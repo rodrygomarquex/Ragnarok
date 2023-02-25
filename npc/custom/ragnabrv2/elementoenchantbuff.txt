@@ -1,0 +1,15 @@
+-	script	Elemento	-1,{
+        OnAtNPC1:
+                  if (!vip_status(VIP_STATUS_ACTIVE)) {
+             message strcharinfo(0),"Seja VIP e desfrute de benefÃ­cios exclusivos.";
+             end;
+     }
+  .@e = select("Agua:Terra:Fogo:Vento:Veneno:Sagrado:Dark:Fantasma");    
+sc_start .listbuffs2[.@e],180000,1;
+end;
+OnInit:
+    bindatcmd "elemento",strnpcinfo(3)+"::OnAtNPC1";
+    set .allowed,0; 
+    setarray    .listbuffs2[1],SC_WATERWEAPON,SC_EARTHWEAPON,SC_FIREWEAPON,SC_WINDWEAPON,SC_ENCPOISON,SC_ASPERSIO,SC_SHADOWWEAPON,SC_GHOSTWEAPON;
+    end;
+}

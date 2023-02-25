@@ -1,0 +1,32 @@
+//===============================================================//
+//   _    _ _____     _____           _       _                  //
+//  | |  | |  __ \   / ____|         (_)     | |                 //
+//  | |__| | |  | | | (___   ___ _ __ _ _ __ | |_ ___            //
+//  |  __  | |  | |  \___ \ / __| '__| | '_ \| __/ __|           //
+//  | |  | | |__| |  ____) | (__| |  | | |_) | |_\__ \           //
+//  |_|  |_|_____/  |_____/ \___|_|  |_| .__/ \__|___/           //
+//   Hurican Dooders Script's ™      | |                         //
+//                                   |_|                         //
+//                                                               //
+// Sistema de ganhar Cash ao derrotar MvPS                       //
+// Versão 1.1                                                    //
+// Compatibilidade: rAthena & Hercules                           //
+// Changelog:                                                    //
+// v1.1 - Trocado "killedrid,22" para "killedrid,MOB_MVPEXP"     //
+//===============================================================//
+
+-    script    DropsMVP#HD    -1,{
+
+OnNPCKillEvent:
+    if (getmonsterinfo(killedrid,MOB_MVPEXP)) // Somente MvPs
+    {
+        if (rand(100) < 50) // se a chance for 50% 
+        { 
+            .cashP = rand(10,100); // vai dar entre 10 e 100 pontos de Cash
+            #CASHPOINTS += .cashP;
+            announce "Parabéns! Você recebeu "+.cashP+" Cashs do MvP "+getmonsterinfo(killedrid,0)+"!",bc_self;
+            //dispbottom "Saldo atual: "+#CASHPOINTS+".";
+            end;
+        }
+    }
+}
